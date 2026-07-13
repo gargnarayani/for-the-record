@@ -1,0 +1,134 @@
+<!-- 
+# FOR THE RECORD - USER INTERFACE 
+# File: frontend/index.html
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For The Record</title>
+    
+    <!-- Include Google Fonts: Alex Brush and Happy Monkey -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Happy+Monkey&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom font classes */
+        .font-title { font-family: 'Alex Brush', cursive; }
+        .font-body { font-family: 'Happy Monkey', system-ui; }
+
+        /* Gingham background pattern configuration */
+        body {
+            background-image: url('gingham.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        /* Custom pastel gradient border using your hex codes */
+        .gradient-border {
+            position: relative;
+            background-color: white;
+            border-radius: 1.5rem;
+            padding: 2.5rem 2rem 2rem 2rem;
+        }
+
+        .gradient-border::before {
+            content: '';
+            position: absolute;
+            top: -6px; bottom: -6px;
+            left: -6px; right: -6px;
+            z-index: -1;
+            background: linear-gradient(to right, #f7ccd3, #b5c56d); /* Pastel Pink to Pastel Green */
+            border-radius: calc(1.5rem + 6px);
+        }
+        
+        /* Darker body text colors for high readability on white background */
+        body, label, span, div, input, p {
+            color: #2d3748; 
+        }
+        
+        /* Pastel console text theme overrides */
+        #consoleOutput div, #consoleOutput span {
+            color: #4a5568;
+        }
+        #consoleOutput div.text-teal-400 { color: #0d9488; } 
+        #consoleOutput div.text-indigo-400 { color: #4f46e5; } 
+        #consoleOutput div.text-emerald-400 { color: #16a34a; } 
+        #consoleOutput div.text-rose-400 { color: #e11d48; } 
+        #consoleOutput div.text-rose-500 { color: #be123c; }
+
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4 font-body">
+
+    <!-- Main Card Module -->
+    <div class="max-w-xl w-full gradient-border shadow-xl relative">
+        
+        <!-- Header Section -->
+        <div class="mb-10 text-center">
+            <!-- Increased font size to 6xl and added Alex Brush font -->
+            <h1 class="text-6xl font-title text-slate-800 tracking-wide select-none">
+                For The Record
+            </h1>
+            <!-- Added extra margin top (mt-4) to create space under the title -->
+            <p class="text-base text-slate-600 mt-4 font-body">
+                Turn your Spotify playlist into MP3 files
+            </p>
+        </div>
+
+        <!-- Input Box Area -->
+        <div class="space-y-6">
+            <div>
+                <!-- This is intentionally left in all caps as requested -->
+                <label class="block text-sm tracking-wider text-slate-500 mb-2 font-bold">
+                    Spotify Playlist Target URL
+                </label>
+                <input 
+                    type="text" 
+                    id="spotifyUrlInput" 
+                    placeholder="https://open.spotify.com/playlist/..." 
+                    class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-800 focus:outline-none focus:border-pink-300 transition-colors placeholder:text-slate-400"
+                >
+            </div>
+
+            <!-- Button updated to use your exact custom pastel gradient values -->
+            <button 
+                id="syncButton" 
+                style="background: linear-gradient(to right, #f7ccd3, #b5c56d);"
+                class="w-full text-slate-800 hover:opacity-90 text-base py-3 rounded-xl tracking-wide transition-all shadow-md active:scale-[0.99] font-bold"
+            >
+                Get My Music
+            </button>
+        </div>
+
+        <!-- System Updates Monitor -->
+        <div class="mt-8 border-t border-slate-100 pt-6">
+            <div class="flex items-center justify-between mb-2">
+                <span class="text-sm text-slate-400 lowercase first-letter:uppercase">
+                    Console
+                </span>
+                <span id="statusIndicator" class="flex h-2 w-2 relative">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-slate-300 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-slate-400"></span>
+                </span>
+            </div>
+            
+            <!-- Output Log Box -->
+            <div 
+                id="consoleOutput" 
+                class="w-full h-36 bg-slate-50 border border-slate-100 rounded-xl p-4 text-xs text-slate-600 overflow-y-auto space-y-1.5 scrollbar-thin"
+            >
+                <div class="text-slate-400">Ready to go. Paste a link above to begin!</div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Interface link script -->
+    <script src="app.js"></script>
+</body>
+</html>
