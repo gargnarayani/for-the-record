@@ -216,3 +216,15 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# =====================================================================
+# FOR THE RECORD - PROJECT MEDIA & CACHE ISOLATION
+# =====================================================================
+cache.db
+cache.db-journal
+*.mp3
+*.m4a
+*.wav
+iPod_Music_Local/
+iPod_Music/
+client_secret.json
