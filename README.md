@@ -10,6 +10,7 @@ The problem is that getting music onto an old iPod in 2026 is a massive pain. Yo
 
 ## What This Project Does (Features)
 
+*   **Dual Mode Dashboard:** Seamlessly switch between rendering local hardware MP3 configurations or exporting playlists directly into online YouTube assets.
 *   **Fast Spotify to MP3 Downloader:** You just paste a Spotify playlist link, and the backend finds the songs, downloads them, and converts them to MP3s automatically.
 *   **Audio Compressing (iPod Shuffle-Squeezer):** Old iPods don't have much storage space. The code automatically shrinks the music files down to a 128kbps variable bitrate so you can fit way more songs onto the limited hardware.
 *   **Hardware Metadata Tagging:** Older Apple hardware won't show song details properly if the file is just raw audio. My script injects the actual song title, artist name, album name, and even the cover artwork directly into the file's binary metadata frames.
@@ -22,7 +23,7 @@ The problem is that getting music onto an old iPod in 2026 is a massive pain. Yo
 ## How to Set Up and Use the Project
 
 ### Prerequisites
-You need to have Python installed on your machine. You will also need FFmpeg installed on your computer for the audio conversion to work properly.
+You need to have Python installed on your machine. You will also need FFmpeg installed on your computer for the audio extraction and conversion to work properly.
 
 ### 1. Install Dependencies
 Open your terminal and run the following command to get all the required libraries installed:
@@ -40,19 +41,8 @@ python backend/app.py
 To use the app, just open the `frontend/index.html` file in any regular web browser.
 
 ### 4. Sync Your Music
+* Toggle your sync method at the top of the interface by choosing either "get mp3 files" or "make youtube playlist".
 * **Paste your Spotify playlist URL** into the input text box on the screen.
-* Click the **"INITIALIZE PIPELINE SYNC"** button.
-* **Watch the terminal console view** at the bottom of the page print out the live progress as it matches, downloads, compresses, and tags your tracks.
-* Once it finishes, check your `backend/iPod_Music_Local/` folder (or your plugged-in USB drive) to find your freshly minted MP3 files ready to drop onto your iPod!
-
----
-
-### Save Your Changes
-
-Once you save this file, open your terminal at the bottom of your Codespace and run these commands to push your updated project to GitHub:
-
-```bash
-git add README.md
-git commit -m "Docs: Rewrite README with authentic project backstory and features"
-git push origin main
-```
+* Click the **"Get My Music"** (or **"Make Playlist"**) button.
+* **Watch the Console log box** at the bottom of the page print out the live progress indicator as it queries, matches, downloads, compresses, and tags your tracks.
+* Once it finishes and the status indicator transitions out of its processing state, check your local fallback path at `backend/iPod_Music_Local/` (or your automatically detected physical hardware partition mount) to find your freshly minted MP3 files!

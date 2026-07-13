@@ -68,14 +68,23 @@
     <!-- Main Card Module -->
     <div class="max-w-xl w-full gradient-border shadow-xl relative">
         
+        <!-- Navigation Tab Toggles to flip between options -->
+        <div class="flex justify-center space-x-6 mb-6 text-sm">
+            <button id="modeMp3" class="border-b-2 border-slate-700 font-bold pb-1 transition-all">
+                get mp3 files
+            </button>
+            <button id="modeYoutube" class="text-slate-400 hover:text-slate-600 pb-1 transition-all">
+                make youtube playlist
+            </button>
+        </div>
+
         <!-- Header Section -->
         <div class="mb-10 text-center">
-            <!-- Increased font size to 6xl and added Alex Brush font -->
             <h1 class="text-6xl font-title text-slate-800 tracking-wide select-none">
                 For The Record
             </h1>
-            <!-- Added extra margin top (mt-4) to create space under the title -->
-            <p class="text-base text-slate-600 mt-4 font-body">
+            <!-- Dynamic description text that updates when you flip options -->
+            <p id="appDescription" class="text-base text-slate-600 mt-4 font-body">
                 Turn your Spotify playlist into MP3 files
             </p>
         </div>
@@ -83,7 +92,6 @@
         <!-- Input Box Area -->
         <div class="space-y-6">
             <div>
-                <!-- This is intentionally left in all caps as requested -->
                 <label class="block text-sm tracking-wider text-slate-500 mb-2 font-bold">
                     Spotify Playlist Target URL
                 </label>
@@ -95,7 +103,7 @@
                 >
             </div>
 
-            <!-- Button updated to use your exact custom pastel gradient values -->
+            <!-- Custom pastel gradient button -->
             <button 
                 id="syncButton" 
                 style="background: linear-gradient(to right, #f7ccd3, #b5c56d);"
@@ -122,7 +130,7 @@
                 id="consoleOutput" 
                 class="w-full h-36 bg-slate-50 border border-slate-100 rounded-xl p-4 text-xs text-slate-600 overflow-y-auto space-y-1.5 scrollbar-thin"
             >
-                <div class="text-slate-400">Ready to go. Paste a link above to begin!</div>
+                <div id="initialConsoleMsg" class="text-slate-400">Ready to go. Paste a link above to begin!</div>
             </div>
         </div>
 

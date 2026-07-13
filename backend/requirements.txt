@@ -1,3 +1,5 @@
+Flask
+flask-cors
 spotipy
 yt-dlp
 mutagen
@@ -6,4 +8,3 @@ psutil
 google-api-python-client
 google-auth-oauthlib
 google-auth-httplib2
-Flask

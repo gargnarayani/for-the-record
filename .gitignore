@@ -228,3 +228,21 @@ cache.db-journal
 iPod_Music_Local/
 iPod_Music/
 client_secret.json
+
+# Caching Database (catches it anywhere in the project, including backend/)
+**/cache.db
+**/cache.db-journal
+
+# Local Music Sync Target Folders
+backend/iPod_Music_Local/
+**/iPod_Music/
+**/iPod_Music_Local/
+
+# Binary Audio Assets
+*.mp3
+*.m4a
+*.wav
+
+# Local Credentials & Secrets
+client_secret.json
+.env*

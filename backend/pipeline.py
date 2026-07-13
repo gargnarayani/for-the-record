@@ -15,7 +15,7 @@ from spotipy import Spotify
 from spotipy.oauth2 import SpotifyClientCredentials
 from mutagen.mp3 import MP3
 from mutagen.id3 import ID3, TIT2, TPE1, TALB, APIC, COMM
-from thefuzz import fuzz
+from thefuzz import fuzz, process
 
 DB_FILE = "backend/cache.db"
 
@@ -24,6 +24,7 @@ DB_FILE = "backend/cache.db"
 
 def init_cache_database():
     """Initializes local relational database cache to protect network I/O bounds."""
+    os.makedirs("backend", exist_ok=True)
     conn = sqlite3.connect(DB_FILE)
     cursor = conn.cursor()
     cursor.execute('''
@@ -69,7 +70,7 @@ def verify_search_relevance(spotify_track, youtube_title):
         candidate = candidate.replace(noise, "")
         
     match_score = fuzz.token_set_ratio(target, candidate)
-    return match_score >= 78 
+    return match_score >= 78
 
 
 # VBR SHUFFLE-SQUEEZER & ID3 CONTAINER INJECTOR
@@ -128,12 +129,12 @@ def process_track_worker(track, target_output_folder):
     
     final_dest_path = os.path.join(target_output_folder, f"{track['artist']} - {track['name']}.mp3")
     
-    # 💾 SMART CACHING / DUPLICATE MITIGATION HIT CHECK
+    # SMART CACHING / DUPLICATE MITIGATION HIT CHECK
     if cached_row:
         local_cached_path, yt_id = cached_row
         if os.path.exists(local_cached_path) and not os.path.exists(final_dest_path):
             shutil.copy2(local_cached_path, final_dest_path)
-            print(f"[-] Duplicate Mitigation ($O(1)$ Cache Hit): Linked {track['name']} without downloading.")
+            print(f"[-] Duplicate Mitigation (O1 Cache Hit): Linked {track['name']} without downloading.")
             conn.close()
             return
 

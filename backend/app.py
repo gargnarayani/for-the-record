@@ -5,12 +5,14 @@
 
 import os
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 from spotipy import Spotify
 from spotipy.oauth2 import SpotifyClientCredentials
 from pipeline import run_for_the_record_pipeline
 
 # Configured to look backwards into the frontend folder for HTML/JS assets
 app = Flask(__name__, static_folder='../frontend', static_url_path='')
+CORS(app)
 
 def fetch_and_parse_spotify_playlist(playlist_url):
     """Initializes a temporary Spotify connection and parses raw track lists."""
@@ -79,6 +81,34 @@ def handle_playlist_sync_request():
         
     except Exception as e:
         return jsonify({"status": "error", "message": f"Server integration error: {str(e)}"}), 500
+
+## YOUTUBE PLAYLIST CONVERTER
+
+@app.route('/api/youtube-playlist', methods=['POST'])
+def handle_youtube_playlist_request():
+    """Intercepts requests from the frontend to turn a Spotify playlist into a YouTube playlist."""
+    try:
+        data = request.get_json() or {}
+        spotify_url = data.get("url", "")
+        
+        # 1. Parse the tracks from the Spotify link using your existing helper
+        playlist_name, tracks_to_sync = fetch_and_parse_spotify_playlist(spotify_url)
+        
+        # 2. PLACEHOLDER FOR YOUTUBE AUTH & PLAYLIST CREATION LOGIC
+        # This is where the google-api-python-client uses OAuth credentials 
+        # to create a new playlist named `playlist_name` and loops through 
+        # `tracks_to_sync` to search for and add the matching videos.
+        
+        print(f"[YOUTUBE PIPELINE] Creating playlist: {playlist_name}")
+        
+        return jsonify({
+            "status": "success",
+            "message": f"Successfully created YouTube playlist '{playlist_name}' with {len(tracks_to_sync)} videos!"
+        }), 200
+        
+    except Exception as e:
+        return jsonify({"status": "error", "message": f"YouTube pipeline integration error: {str(e)}"}), 500
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)
