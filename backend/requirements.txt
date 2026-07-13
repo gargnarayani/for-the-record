@@ -1,1 +1,9 @@
-
+spotipy
+yt-dlp
+mutagen
+thefuzz
+psutil
+google-api-python-client
+google-auth-oauthlib
+google-auth-httplib2
+Flask
