@@ -5,6 +5,8 @@ I recently found my dad's old 2000s era iPod Shuffle—the very first generation
 The problem is that getting music onto an old iPod in 2026 is a massive pain. You can't just sync a streaming app to it. I wanted a way to turn my favorite Spotify playlists into local MP3 files fast and quickly so I could load them up onto the device. That's why I built this project. I hope you enjoy it!
 
 ---
+![For The Record Custom Dashboard Layout](frontend/screenshot.png)
+---
 
 ## What This Project Does (Features)
 
